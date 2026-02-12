@@ -91,3 +91,11 @@ All API requests from the frontend are routed through the API Gateway on port `8
 
 -   `http://localhost:8080/api/cars`
 -   `http://localhost:8080/api/maintenance`
+
+---
+
+## 📝 License
+
+This project was developed for portfolio purposes to demonstrate Full-Stack development and Microservices Orchestration.
+
+**Developed by Justin Istrate 🚀**
