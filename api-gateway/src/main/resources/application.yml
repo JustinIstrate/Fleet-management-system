@@ -11,11 +11,12 @@ spring:
           enabled: true
           lower-case-service-id: true
 
-      # CORS CONFIG
+      # GLOBAL CORS CONFIGURATION
       globalcors:
+        add-to-nested-error-containers: true
         cors-configurations:
           '[/**]':
-            allowedOrigins: "*" # In production, replace with frontend URL
+            allowedOrigins: "http://localhost:4200" # Explicitly allow your Angular app
             allowedMethods:
               - GET
               - POST
@@ -23,12 +24,17 @@ spring:
               - DELETE
               - OPTIONS
             allowedHeaders: "*"
+            allowCredentials: false # Must be false if allowedOrigins is "*" or if not using cookies
 
       routes:
+        # This route handles EVERYTHING starting with /api/
+        # (Both /api/cars and /api/maintenance)
         - id: fleet-manager-route
           uri: lb://FLEET-MANAGER
           predicates:
             - Path=/api/**
+          filters:
+            - PreserveHostHeader # Helps with some internal routing issues
 
 eureka:
   client:

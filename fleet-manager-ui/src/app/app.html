@@ -1,0 +1,112 @@
+<div class="main-wrapper py-5">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-5 p-4 bg-white dashboard-card shadow-sm">
+      <div>
+        <h1 class="h2 fw-bold text-dark mb-1">Fleet <span class="text-gradient">Intelligence</span></h1>
+        <p class="text-muted mb-0">Operational overview and maintenance monitoring</p>
+      </div>
+      <div class="stats-pill">
+        <span class="label">Total Vehicles:</span>
+        <span class="value">{{ cars.length }}</span>
+      </div>
+    </div>
+
+    @if (errorMsg) {
+      <div class="alert alert-custom-error shadow-sm mb-4">{{ errorMsg }}</div>
+    }
+
+    <div class="table-card shadow-lg">
+      <div class="table-responsive">
+        <table class="table table-custom mb-0">
+          <thead>
+          <tr>
+            <th class="ps-4">VEHICLE IDENTIFICATION</th>
+            <th>PLATE</th>
+            <th>YEAR</th>
+            <th>MILEAGE</th>
+            <th class="text-center">ACTION</th>
+          </tr>
+          </thead>
+          <tbody>
+            @for (car of cars; track $index) {
+              <tr (click)="viewLogs(car)" class="align-middle">
+                <td class="ps-4">
+                  <div class="d-flex align-items-center">
+                    <div class="car-icon me-3">🚗</div>
+                    <div>
+                      <div class="fw-bold text-dark fs-5">{{ car.make }}</div>
+                      <div class="text-muted small">{{ car.model }}</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="plate-badge-modern">{{ car.licensePlate }}</span></td>
+                <td><span class="year-tag">{{ car.year }}</span></td>
+                <td>
+                  <div class="fw-bold text-dark">{{ car.mileage | number }} <small class="text-muted">km</small></div>
+                </td>
+                <td class="text-center">
+                  <button class="btn btn-view-logs">
+                    <span>View Logs</span>
+                    <i class="ms-1">→</i>
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  @if (selectedCar) {
+    <div class="modal-overlay" (click)="closeLogs()">
+      <div class="modal-window shadow-2xl" (click)="$event.stopPropagation()">
+
+        <div class="modal-header-modern">
+          <div class="d-flex align-items-center">
+            <div class="header-icon me-3">🔧</div>
+            <div>
+              <h4 class="mb-0 fw-bold">{{ selectedCar.make }} {{ selectedCar.model }}</h4>
+              <span class="text-white-50 small">Maintenance History</span>
+            </div>
+          </div>
+          <button class="btn-close-custom" (click)="closeLogs()">×</button>
+        </div>
+
+        <div class="modal-body p-4">
+          <div class="total-investment-card mb-4">
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="label text-uppercase">Total Maintenance Cost</span>
+              <span class="amount">${{ totalCost | number:'1.2-2' }}</span>
+            </div>
+          </div>
+
+          <div class="log-timeline mt-4">
+            <h6 class="section-title mb-3">SERVICE RECORDS</h6>
+            <div class="scroll-area">
+              @for (log of maintenanceLogs; track $index) {
+                <div class="log-card-modern p-3 mb-3 border-start border-4 border-primary shadow-sm bg-white rounded">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <span class="fw-bold text-dark fs-5">{{ log.description }}</span>
+                    <span class="log-cost">${{ log.cost | number }}</span>
+                  </div>
+                  <div class="d-flex align-items-center text-muted small">
+                    <span class="me-2">📅 {{ log.date }}</span>
+                  </div>
+                </div>
+              } @empty {
+                <div class="text-center py-5">
+                  <p class="text-muted opacity-50">No maintenance entries found.</p>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer p-4 border-0">
+          <button class="btn btn-close-modal w-100" (click)="closeLogs()">Return to Dashboard</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

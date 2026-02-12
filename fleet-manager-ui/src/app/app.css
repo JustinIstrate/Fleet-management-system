@@ -1,0 +1,200 @@
+:host {
+  --primary: #4361ee;
+  --primary-hover: #374fc7;
+  --bg: #f3f4f6;
+  --dark: #1e293b;
+}
+
+/* Background & Typography */
+.main-wrapper {
+  background-color: var(--bg);
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Dashboard Card Header */
+.dashboard-card {
+  border-radius: 20px;
+  border: none;
+}
+
+.text-gradient {
+  background: linear-gradient(45deg, var(--primary), #7209b7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stats-pill {
+  background: #f8f9fa;
+  padding: 10px 20px;
+  border-radius: 50px;
+  border: 1px solid #e9ecef;
+}
+
+.stats-pill .value {
+  font-weight: 800;
+  color: var(--primary);
+  margin-left: 8px;
+}
+
+/* Table Card Styling */
+.table-card {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.table-custom thead {
+  background: var(--dark);
+  color: white;
+}
+
+.table-custom thead th {
+  padding: 20px;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: none;
+}
+
+.table-custom tbody tr {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.table-custom tbody tr:hover {
+  background-color: #f8f9ff !important;
+  transform: scale(1.005);
+}
+
+.table-custom td {
+  padding: 20px;
+  border-color: #f1f5f9;
+}
+
+/* Plate & Year Tags */
+.plate-badge-modern {
+  background: #2b2d42;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-family: 'Monaco', monospace;
+  font-weight: 700;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+}
+
+.year-tag {
+  background: #e2e8f0;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #475569;
+}
+
+/* Buttons */
+.btn-view-logs {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-view-logs:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* Modern Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 20px;
+}
+
+.modal-window {
+  background: white;
+  width: 100%;
+  max-width: 550px;
+  border-radius: 28px;
+  overflow: hidden;
+  animation: modalEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalEnter {
+  from { opacity: 0; transform: scale(0.9) translateY(30px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-header-modern {
+  background: var(--dark);
+  color: white;
+  padding: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-investment-card {
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  padding: 20px;
+  border-radius: 18px;
+}
+
+.total-investment-card .amount {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #059669;
+}
+
+/* Log Cards */
+.log-card-modern {
+  border: 1px solid #f1f5f9;
+  transition: transform 0.2s;
+}
+
+.log-cost {
+  color: var(--primary);
+  font-weight: 700;
+  background: #eef2ff;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.btn-close-modal {
+  background: var(--dark);
+  color: white;
+  padding: 14px;
+  border-radius: 14px;
+  font-weight: 600;
+  border: none;
+}
+
+.scroll-area {
+  max-height: 350px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.btn-close-custom {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: white;
+  font-size: 24px;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
